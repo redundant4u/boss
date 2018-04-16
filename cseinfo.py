@@ -23,8 +23,9 @@ def cseNotice():
 			for i in range(locationNumber + 1, 16):
 				title = src[i].find_all("td")[1].text
 				date = src[i].find_all("td")[3].text
-				processString(title, date)
-				#rint(fixedTitle)
+				for a in (src[i].find_all("a")):
+					link = "https://cse.pusan.ac.kr" + a['href']
+				processString(title, date, link)
 			break
 		else:
 			locationNumber += 1
@@ -45,13 +46,14 @@ def fileEnd():
 	file = open("3.txt", "a")
 	file.write("\n\t\t),\n\t);\n\t$array = json_encode($info);\n\techo $array;\n?>")
 
-def processString(string, date):
+def processString(string, date, link):
 	fixedTitle = string.replace("새글", "")
 	fixedTitle2 = fixedTitle.strip()
-	print(fixedTitle2)
+	#print(fixedTitle2)
 	file = open("3.txt", "a")
 	file.write("array (\n\t\t\t\t'title' => '" + fixedTitle2 + "',\n\t\t\t\t'date' => '")
-	file.write(date + "',\n\t\t\t),\n\t\t\t")
+	file.write(date + "',\n\t\t\t\t'link' => '")
+	file.write(link + "',\n\t\t\t),\n\t\t\t")
 
 if __name__ == "__main__":
 	main()
