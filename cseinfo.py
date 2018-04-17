@@ -39,18 +39,18 @@ def isNumber(number):
 		return False
 
 def fileInit():
-	file = open("3.txt", "w")
+	file = open("/var/www/html/notice/info.php", "w")
 	file.write("<?php\n\t$info = array (\n\t\t'notice' =>\n\t\tarray (\n\t\t\t")
 
 def fileEnd():
-	file = open("3.txt", "a")
+	file = open("/var/www/html/notice/info.php", "a")
 	file.write("\n\t\t),\n\t);\n\t$array = json_encode($info);\n\techo $array;\n?>")
 
 def processString(string, date, link):
+	string = string.encode('utf8')
 	fixedTitle = string.replace("새글", "")
 	fixedTitle2 = fixedTitle.strip()
-	#print(fixedTitle2)
-	file = open("3.txt", "a")
+	file = open("/var/www/html/notice/info.php", "a")
 	file.write("array (\n\t\t\t\t'title' => '" + fixedTitle2 + "',\n\t\t\t\t'date' => '")
 	file.write(date + "',\n\t\t\t\t'link' => '")
 	file.write(link + "',\n\t\t\t),\n\t\t\t")
