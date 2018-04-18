@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 import requests
@@ -45,6 +45,7 @@ def fileInit():
 def fileEnd():
 	file = open("/var/www/html/notice/info.php", "a")
 	file.write("\n\t\t),\n\t);\n\t$array = json_encode($info);\n\techo $array;\n?>")
+	file.close()
 
 def processString(string, date, link):
 	string = string.encode('utf8')
